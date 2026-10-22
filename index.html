@@ -202,10 +202,12 @@ li.open .row-body { grid-template-rows: 1fr; }
 /* ---------- About ---------- */
 .about .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: clamp(32px, 5vw, 64px); }
 .photo {
-  aspect-ratio: 1 / 1; width: clamp(180px, 20vw, 260px); max-width: 100%; border-radius: 50%; background: var(--line);
+  aspect-ratio: 1 / 1; width: clamp(220px, 26vw, 340px); max-width: 100%; border-radius: 50%; background: var(--line);
+  justify-self: center; align-self: center;
   display: grid; place-items: center; color: var(--muted); font-size: 15px; position: relative; overflow: hidden;
 }
-.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+/* Crop: hairline to shirt collar, face centred */
+.photo img { position: absolute; left: -5.8%; top: -16.9%; width: 114.3%; height: auto; max-width: none; }
 .about-text > p { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.35; letter-spacing: -0.02em; max-width: 34ch; }
 .about-text > p + p { margin-top: 20px; }
 .about-text > p .m { color: var(--muted); }
@@ -255,7 +257,7 @@ footer .cn { letter-spacing: 0.08em; }
   .meta-line { width: 100%; justify-content: space-between; }
   .row-inner { grid-template-columns: minmax(0, 1fr); }
   .about .grid { grid-template-columns: minmax(0, 1fr); }
-  .photo { width: 200px; }
+  .photo { width: 220px; }
 }
 @media (max-width: 640px) {
   .hero-cap { grid-template-columns: minmax(0, 1fr); }
