@@ -1,0 +1,27 @@
+# Environment files and secrets: never commit these
+.env
+.env.*
+!.env.example
+*.env
+secrets.*
+secret.*
+credentials*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+*.keystore
+.npmrc
+service-account*.json
+
+# System and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Dependencies and build output, if any are ever added
+node_modules/
+dist/

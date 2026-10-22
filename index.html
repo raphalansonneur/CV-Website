@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Raphaël Lansonneur</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Raphaël Lansonneur: MSc Global Health Management student at Imperial Business School and co-founder of Ink Studio, a videography and digital marketing agency in Geneva.">
+<meta property="og:title" content="Raphaël Lansonneur">
+<meta property="og:description" content="MSc Global Health Management at Imperial Business School. Co-founder of Ink Studio. Previously Gartner and Brown University.">
+<meta property="og:type" content="profile">
+<meta name="theme-color" content="#030303">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23141414'/%3E%3Ctext x='16' y='21.5' font-family='Helvetica,Arial,sans-serif' font-size='14' font-weight='600' fill='%23fff' text-anchor='middle'%3ERL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&display=swap">
+<style>
+/* Layout: one long page. A hand-drawn animated figure of Raphaël cycling through his activities
+   (after Hello Monday's ink characters), name below; then a short statement
+   beside a map card that plays the route through the seven cities Raphaël has studied and worked
+   in once it is on screen. After it, big type-led lists (experience, education) that open on
+   click, then about and contact.
+   Colour comes in full-bleed blocks, the way Locomotive and Immersive Garden switch the whole
+   page colour per section: black, Immersive Garden grey, black again, then Locomotive red.
+   One fixed look, independent of the viewer's light/dark setting. */
+:root {
+  /* palette */
+  --black: #030303;     /* Immersive Garden black */
+  --grey: #E8E8E8;      /* Immersive Garden grey */
+  --white: #FFFFFF;
+  --red: #DA382E;       /* Locomotive red */
+  /* active theme (dark by default: hero, intro, journey) */
+  --bg: var(--black);
+  --fg: var(--grey);
+  --muted: #8F8F8F;
+  --line: #2A2A2A;
+  --dot: #3A3A3A;
+  --accent: #EE4B3F;
+  --accent-fg: var(--black);
+  --font: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --gl: max(20px, env(safe-area-inset-left, 0px));
+  --gr: max(20px, env(safe-area-inset-right, 0px));
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: dark;
+}
+.t-dark  { --bg: var(--black); --fg: var(--grey);  --muted: #8F8F8F; --line: #2A2A2A; --accent: #EE4B3F; --accent-fg: var(--black); }
+.t-grey  { --bg: #D4D4D4;      --fg: var(--black); --muted: #4A4A4A; --line: #B3B3B3; --accent: #A3221A; --accent-fg: var(--white); }
+.t-red   { --bg: var(--red);   --fg: #000000;      --muted: #2A0705; --line: rgba(0,0,0,.28); --accent: var(--white); --accent-fg: var(--red); }
+.t-dark, .t-grey, .t-red { color: var(--fg); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; touch-action: manipulation; -webkit-tap-highlight-color: transparent; scroll-padding-top: 72px; }
+html:not(.lenis) { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html:not(.lenis) { scroll-behavior: auto; } }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font); font-size: 17px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; font-kerning: normal; font-feature-settings: "kern" 1;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+::selection { background: var(--accent); color: var(--accent-fg); }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.wrap { max-width: 1240px; margin-inline: auto; padding-left: var(--gl); padding-right: var(--gr); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: -9999px; top: 12px; z-index: 40; padding: 10px 16px; border-radius: 999px; background: var(--fg); color: var(--bg); }
+.skip:focus { left: var(--gl); }
+
+/* Underlined links */
+.u { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); transition: color 200ms ease, text-decoration-color 200ms ease; }
+.u:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+/* ---------- Header ---------- */
+.top {
+  color: var(--fg); transition: background-color 400ms ease, color 400ms ease;
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; max-width: none; }
+.brand { font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
+.brand .short { display: none; }
+.nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
+.nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); transition: color 200ms ease; }
+.nav a::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0; transform: scale(0); transition: opacity 200ms ease, transform 300ms var(--ease); }
+.nav a:hover, .nav a.on { color: var(--fg); }
+.nav a.on::before { opacity: 1; transform: scale(1); background: var(--accent); }
+.nav .cv { color: var(--fg); font-weight: 500; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; transition: border-color 200ms ease; }
+.nav .cv::before { display: none; }
+.nav .cv:hover { border-color: var(--fg); }
+.progress { position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--fg); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); opacity: .5; }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100svh; display: grid; grid-template-rows: 1fr auto; position: relative;
+  padding-top: calc(60px + env(safe-area-inset-top, 0px)); padding-bottom: clamp(20px, 3vw, 36px);
+}
+.hero > .wrap { width: 100%; }
+/* hand-drawn figure, the way Hello Monday opens with its ink characters */
+.stage { display: grid; place-items: center; min-height: 0; }
+#ink { width: min(100%, 460px); height: auto; max-height: min(44svh, 380px); overflow: visible; }
+.js #ink { animation: fade 1200ms var(--ease) 200ms both; }
+.hero-cap { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 16px 40px; padding-top: 22px; }
+.hero h1 { font-size: clamp(40px, 7vw, 104px); font-weight: 700; line-height: 0.9; letter-spacing: -0.055em; }
+.hero h1 .w { display: inline-block; white-space: nowrap; margin-right: 0.22em; }
+.hero h1 .w:last-of-type { margin-right: 0; }
+.hero h1 .ch { display: inline-block; }
+.hero h1 .cn { display: inline-block; margin-left: 0.3em; font-size: 0.24em; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); vertical-align: 0.88em; }
+.js .hero h1 .cn { animation: fade 900ms var(--ease) 700ms both; }
+.brand .cn { font-weight: 400; color: var(--muted); margin-left: 4px; letter-spacing: 0.04em; }
+.js .hero h1 .ch { animation: rise 900ms var(--ease) both; animation-delay: calc(var(--i) * 26ms + 120ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
+@keyframes up { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes drip { to { top: 100%; } }
+
+/* ---------- Intro: statement beside the map ---------- */
+.intro { padding-block: clamp(96px, 14vw, 180px); }
+.intro .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.intro p.intro-text {
+  max-width: 19ch; font-size: clamp(28px, 2.9vw, 42px); line-height: 1.1; letter-spacing: -0.04em; font-weight: 500;
+  text-wrap: pretty;
+}
+/* words light up from dark grey to white as the text scrolls up */
+.js .intro-text .wd { color: #3A3A3A; transition: color 250ms ease; }
+.js .intro-text .wd.lit { color: var(--fg); }
+
+/* ---------- Journey: map card that plays the route by itself ---------- */
+.journey { position: relative; border-radius: 22px; overflow: hidden; background: #0A0A0A; border: 1px solid var(--line); }
+.map-view { display: none; }
+.js .map-view { display: block; position: relative; height: min(74svh, 660px); }
+.map-view canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.panel { position: relative; padding: 28px; }
+.js .panel {
+  position: absolute; left: 20px; bottom: 20px; width: min(320px, calc(100% - 40px)); padding: 22px 24px 20px; border-radius: 16px;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.panel h2 { font-size: 14px; font-weight: 500; color: var(--muted); }
+.play { display: none; }
+.js .play { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 4px 0; transition: color 200ms ease; }
+.play:hover { color: var(--fg); }
+.play svg { width: 10px; height: 10px; fill: currentColor; }
+.stops { margin-top: 18px; display: grid; gap: 22px; }
+.js .stops { display: grid; margin-top: 10px; }
+.stop .city { font-size: clamp(32px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+.stop .yrs { margin-top: 8px; font-size: 14px; color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 500; }
+.stop .what { margin-top: 8px; color: var(--fg); font-size: 15px; line-height: 1.45; max-width: 34ch; }
+.js .stop { grid-area: 1 / 1; opacity: 0; transform: translateY(10px); transition: opacity 450ms var(--ease), transform 600ms var(--ease); pointer-events: none; }
+.js .stop.on { opacity: 1; transform: none; pointer-events: auto; }
+.ticks { display: none; }
+.js .ticks { display: flex; gap: 6px; margin-top: 18px; }
+.ticks li { flex: 1; height: 2px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.ticks li b { display: block; height: 100%; background: var(--fg); transform-origin: 0 50%; transform: scaleX(var(--f, 0)); }
+
+/* ---------- Big lists (experience, education) ---------- */
+.block { background: var(--bg); padding-block: clamp(80px, 12vw, 160px) clamp(40px, 6vw, 80px); }
+.block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--fg); }
+.block-head h2 { font-size: clamp(15px, 1.3vw, 17px); font-weight: 500; }
+.block-head p { font-size: 14px; color: var(--muted); }
+.rows > li { border-bottom: 1px solid var(--line); }
+.row-btn {
+  width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 32px;
+  padding-block: clamp(20px, 2.6vw, 34px);
+}
+.row-name {
+  font-size: clamp(34px, 6.4vw, 92px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.98;
+  transition: transform 500ms var(--ease), color 300ms ease;
+}
+.row-meta { display: grid; justify-items: end; text-align: right; gap: 2px; font-size: 15px; }
+.row-meta .role { font-weight: 500; }
+.row-meta .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+.plus { position: relative; width: 14px; height: 14px; margin-left: 4px; flex: none; }
+.plus::before, .plus::after { content: ""; position: absolute; left: 0; top: 6.5px; width: 14px; height: 1.5px; background: currentColor; transition: transform 400ms var(--ease); }
+.plus::after { transform: rotate(90deg); }
+.row-btn[aria-expanded="true"] .plus::after { transform: rotate(0deg); }
+.meta-line { display: inline-flex; align-items: center; gap: 12px; }
+@media (hover: hover) {
+  .row-btn:hover .row-name { transform: translateX(14px); color: var(--accent); }
+}
+.row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 550ms var(--ease); }
+.row-body > div { overflow: hidden; }
+li.open .row-body { grid-template-rows: 1fr; }
+.row-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px 48px; padding-bottom: 36px; }
+.row-inner .lead { font-size: 15px; color: var(--muted); }
+.row-inner .lead a { color: var(--fg); }
+.row-inner ul.pts { display: grid; gap: 10px; max-width: 62ch; }
+.row-inner ul.pts li { position: relative; padding-left: 20px; }
+.row-inner ul.pts li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--muted); }
+.row-inner strong { font-weight: 600; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.tags li { font-size: 13px; line-height: 1; padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line); }
+.no-js .row-body, .no-js li .row-body { grid-template-rows: 1fr; }
+
+/* ---------- About ---------- */
+.about .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: clamp(32px, 5vw, 64px); }
+.photo {
+  aspect-ratio: 4 / 5; max-width: 100%; border-radius: 16px; background: var(--line);
+  display: grid; place-items: center; color: var(--muted); font-size: 15px; position: relative; overflow: hidden;
+}
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.about-text > p { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.35; letter-spacing: -0.02em; max-width: 34ch; }
+.about-text > p + p { margin-top: 20px; }
+.about-text > p .m { color: var(--muted); }
+.kv { margin-top: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.kv dt { font-size: 13px; color: var(--muted); }
+.kv dd { margin-top: 6px; font-size: 15px; }
+.langs { display: grid; gap: 4px; }
+.langs li { display: flex; justify-content: space-between; gap: 12px; max-width: 220px; }
+.langs li span { color: var(--muted); }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--bg); padding-block: clamp(100px, 16vw, 200px) clamp(64px, 8vw, 100px); text-align: center; }
+.contact h2 { font-size: clamp(56px, 12vw, 180px); font-weight: 700; letter-spacing: -0.06em; line-height: 0.9; }
+.contact .mail { display: inline-block; margin-top: 32px; font-size: clamp(18px, 2.4vw, 28px); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.contact .links { margin-top: 28px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 15px; font-weight: 500; border: 1px solid var(--line); transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease; }
+.btn:hover { border-color: var(--fg); }
+.btn.solid { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn.solid:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+footer { background: var(--bg); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 24px 32px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+footer .cn { letter-spacing: 0.08em; }
+
+/* ---------- Reveal on scroll (where supported; content is visible otherwise) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero h1 .ch, .js .hero h1 .cn, .js #ink, .cue i::after { animation: none; }
+  .row-name, .row-body, .plus::before, .plus::after, .js .stop { transition: none; }
+}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 980px) {
+  .intro .grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .intro p.intro-text { max-width: 20ch; }
+  .js .map-view { height: clamp(300px, 62vw, 460px); }
+  .js .panel { position: relative; left: auto; bottom: auto; width: auto; border-radius: 0; border: 0; border-top: 1px solid var(--line); background: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 20px; }
+  .js .stops { min-height: 9.5em; align-content: start; }
+}
+@media (max-width: 860px) {
+  .row-btn { grid-template-columns: minmax(0, 1fr); }
+  .row-meta { justify-items: start; text-align: left; }
+  .meta-line { width: 100%; justify-content: space-between; }
+  .row-inner { grid-template-columns: minmax(0, 1fr); }
+  .about .grid { grid-template-columns: minmax(0, 1fr); }
+  .photo { max-width: 280px; }
+}
+@media (max-width: 640px) {
+  .hero-cap { grid-template-columns: minmax(0, 1fr); }
+  .nav { gap: 16px; }
+  .nav .opt { display: none; }
+  .brand .full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .brand .short { display: inline; }
+  .kv { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="full">Raphaël Lansonneur <span class="cn" lang="zh-Hans">雷赫非</span></span><span class="short" aria-hidden="true">RL</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a class="opt" href="#journey">Journey</a>
+      <a href="#experience">Experience</a>
+      <a class="opt" href="#education">Education</a>
+      <a href="#about">About</a>
+      <a class="cv" href="cv.pdf">CV</a>
+    </nav>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap stage">
+      <svg id="ink" viewBox="10 40 380 310" role="img" aria-label="Hand-drawn animation of Raphaël surfing, snowboarding, playing the piano, training Muay Thai, playing rugby, cooking and playing chess">
+        <defs><filter id="boil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs>
+      </svg>
+    </div>
+    <div class="wrap">
+      <div class="hero-cap">
+        <h1><span class="sr-only">Raphaël Lansonneur, 雷赫非</span><span class="w" aria-hidden="true"><span class="ch" style="--i:1">R</span><span class="ch" style="--i:2">a</span><span class="ch" style="--i:3">p</span><span class="ch" style="--i:4">h</span><span class="ch" style="--i:5">a</span><span class="ch" style="--i:6">ë</span><span class="ch" style="--i:7">l</span></span> <span class="w" aria-hidden="true"><span class="ch" style="--i:8">L</span><span class="ch" style="--i:9">a</span><span class="ch" style="--i:10">n</span><span class="ch" style="--i:11">s</span><span class="ch" style="--i:12">o</span><span class="ch" style="--i:13">n</span><span class="ch" style="--i:14">n</span><span class="ch" style="--i:15">e</span><span class="ch" style="--i:16">u</span><span class="ch" style="--i:17">r</span><span class="ch" style="--i:18">.</span></span><span class="cn" lang="zh-Hans" aria-hidden="true">雷赫非</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" aria-label="Introduction">
+    <div class="wrap grid">
+      <p class="intro-text">I study Global Health Management at Imperial and run a videography and digital marketing agency based in Geneva. Before that, I sold to CFOs at Gartner and studied Biology and Economics at Brown University.</p>
+      <div class="journey reveal" id="journey" role="region" aria-labelledby="journey-h">
+        <div class="map-view" aria-hidden="true"><canvas id="map"></canvas></div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2 id="journey-h">Seven cities so far</h2>
+            <button class="play" type="button" aria-label="Pause the journey"><svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="0" width="3" height="10"/><rect x="6" y="0" width="3" height="10"/></svg><span>Pause</span></button>
+          </div>
+          <ol class="stops">
+            <li class="stop" data-lon="103.82" data-lat="1.35"><p class="city">Singapore</p><p class="yrs">2005–2021</p><p class="what">Where I grew up. International Baccalaureate at UWCSEA Dover, 40/45, with Higher Level Chemistry, Biology and Psychology.</p></li>
+            <li class="stop" data-lon="-71.41" data-lat="41.82"><p class="city">Providence</p><p class="yrs">2021–2025</p><p class="what">BA Biology and Economics at Brown University, GPA 3.75/4.00. Co-captained the Brown Men’s Rugby Team to the 2024 D1 National Championship.</p></li>
+            <li class="stop" data-lon="-74.07" data-lat="4.71"><p class="city">Bogotá</p><p class="yrs">2024</p><p class="what">Six weeks in business development with TourHero, before the second half of the internship in New York.</p></li>
+            <li class="stop" data-lon="-74.01" data-lat="40.71"><p class="city">New York</p><p class="yrs">2022 and 2024</p><p class="what">Summer internships in branding at ESTABLISHED. and in business development at TourHero.</p></li>
+            <li class="stop" data-lon="6.14" data-lat="46.20"><p class="city">Geneva</p><p class="yrs">2023–now</p><p class="what">Co-founded Ink Studio, a videography and digital marketing agency.</p></li>
+            <li class="stop" data-lon="2.17" data-lat="41.39"><p class="city">Barcelona</p><p class="yrs">2026</p><p class="what">Sales development at Gartner, prospecting CFOs of midsize enterprises.</p></li>
+            <li class="stop" data-lon="-0.13" data-lat="51.51"><p class="city">London</p><p class="yrs">2026–2027</p><p class="what">MSc Global Health Management at Imperial Business School.</p></li>
+          </ol>
+          <ol class="ticks" aria-hidden="true"><li><b></b></li><li><b></b></li><li><b></b></li><li><b></b></li><li><b></b></li><li><b></b></li><li><b></b></li></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block t-grey" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <div class="block-head reveal"><h2 id="exp-h">Experience</h2><p>Select a role for details</p></div>
+      <ul class="rows">
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="x1">
+            <span class="row-name" translate="no">Ink Studio</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">Co-Founder &amp; Managing Director</span><span class="plus" aria-hidden="true"></span></span><span class="when">2025–now, Geneva</span></span>
+          </button>
+          <div class="row-body" id="x1"><div><div class="row-inner">
+            <p class="lead">Videography and digital marketing agency. <a class="u on" href="https://inkstudio.ch" rel="noopener">inkstudio.ch</a></p>
+            <div>
+              <ul class="pts">
+                <li>Brand films, event videos, social content and ads for <strong>10+ clients</strong> in hospitality, education, sports, real estate and fashion.</li>
+                <li>Run the business side: sales, client relationships, operations, finance and infrastructure.</li>
+                <li>Designed and built the agency’s website.</li>
+                <li><strong>CHF&nbsp;35,000</strong> in revenue in 2026 so far.</li>
+              </ul>
+              <ul class="tags"><li>Sales</li><li>Operations</li><li>Finance</li><li>Video production</li><li>Web design</li></ul>
+            </div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="x2">
+            <span class="row-name" translate="no">Gartner</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">Sales Development Associate</span><span class="plus" aria-hidden="true"></span></span><span class="when">Feb–May 2026, Barcelona</span></span>
+          </button>
+          <div class="row-body" id="x2"><div><div class="row-inner">
+            <p class="lead">Research and advisory firm. MSE Finance team.</p>
+            <div>
+              <ul class="pts">
+                <li>First point of contact for CFOs of midsize enterprises ($100M–$1B revenue), through cold calls, email sequences and LinkedIn.</li>
+                <li>Turned prospects into 45-minute introductory meetings on Gartner’s services.</li>
+                <li>Consistently hit <strong>125–150%</strong> of monthly targets, among the top performers on the team.</li>
+              </ul>
+              <ul class="tags"><li>B2B sales</li><li>Prospecting</li><li>Salesforce</li></ul>
+            </div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="x3">
+            <span class="row-name" translate="no">TourHero</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">Business Development Intern</span><span class="plus" aria-hidden="true"></span></span><span class="when">Summer 2024, Bogotá and New York</span></span>
+          </button>
+          <div class="row-body" id="x3"><div><div class="row-inner">
+            <p class="lead">Travel tech startup. Six weeks in Bogotá, Colombia, then six weeks in New York.</p>
+            <div>
+              <ul class="pts">
+                <li>Onboarded <strong>30+ venues</strong> in Bali by negotiating with villa owners and management companies.</li>
+                <li>Brought on new clients and ran market research and marketing initiatives to raise brand visibility.</li>
+              </ul>
+              <ul class="tags"><li>Partnerships</li><li>Negotiation</li><li>Market research</li></ul>
+            </div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="x4">
+            <span class="row-name" translate="no">RH Expert</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">Waiter, Runner, Host</span><span class="plus" aria-hidden="true"></span></span><span class="when">Summer 2023, Geneva</span></span>
+          </button>
+          <div class="row-body" id="x4"><div><div class="row-inner">
+            <p class="lead">Hospitality agency.</p>
+            <div><ul class="pts"><li>Covered front-of-house roles across venues at short notice, keeping service standards high under pressure.</li></ul></div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="x5">
+            <span class="row-name" translate="no">ESTABLISHED.</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">Strategic Marketing Intern</span><span class="plus" aria-hidden="true"></span></span><span class="when">Summer 2022, New York</span></span>
+          </button>
+          <div class="row-body" id="x5"><div><div class="row-inner">
+            <p class="lead">Packaging and branding agency.</p>
+            <div><ul class="pts"><li>Proposed branding and marketing ideas with the strategy team, backed by research into trends and artists.</li></ul>
+            <ul class="tags"><li>Branding</li><li>Marketing</li></ul></div>
+          </div></div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block t-grey" id="education" aria-labelledby="edu-h">
+    <div class="wrap">
+      <div class="block-head reveal"><h2 id="edu-h">Education</h2><p>Select a school for details</p></div>
+      <ul class="rows">
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="e1">
+            <span class="row-name" translate="no">Imperial</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">MSc Global Health Management</span><span class="plus" aria-hidden="true"></span></span><span class="when">2026–2027, London</span></span>
+          </button>
+          <div class="row-body" id="e1"><div><div class="row-inner">
+            <p class="lead">Imperial Business School. Concentration in Innovation &amp; Entrepreneurship.</p>
+            <div><ul class="pts"><li>Health Economics; Health Systems, Policy and Financing; Business Strategy for Global Healthcare.</li><li>Design Thinking; Marketing for Entrepreneurship; Technology and Innovation Management; Financial Accounting for Health.</li></ul></div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="e2">
+            <span class="row-name" translate="no">Brown</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">BA Biology and Economics</span><span class="plus" aria-hidden="true"></span></span><span class="when">2021–2025, Providence</span></span>
+          </button>
+          <div class="row-body" id="e2"><div><div class="row-inner">
+            <p class="lead">Brown University. GPA <strong>3.75/4.00</strong>.</p>
+            <div><ul class="pts">
+              <li>Immunology, infectious diseases, genetics, organic chemistry, and cell and molecular biology.</li>
+              <li>Microeconomics, international finance, and the management of industrial and nonprofit organisations.</li>
+              <li>Co-captain of the men’s rugby 1st XV: <strong>2024 D1 National Champions</strong>, 2022 D1 National and Ivy League Champions. Scholastic All-American.</li>
+            </ul></div>
+          </div></div></div>
+        </li>
+        <li>
+          <button type="button" class="row-btn" aria-expanded="false" aria-controls="e3">
+            <span class="row-name" translate="no">UWCSEA</span>
+            <span class="row-meta"><span class="meta-line"><span class="role">International Baccalaureate</span><span class="plus" aria-hidden="true"></span></span><span class="when">2019–2021, Singapore</span></span>
+          </button>
+          <div class="row-body" id="e3"><div><div class="row-inner">
+            <p class="lead">United World College of South East Asia, Dover campus.</p>
+            <div><ul class="pts"><li><strong>40/45</strong>, with Higher Level Biology, Chemistry and Psychology.</li><li>Volunteered with Mercu Buddies, running activity sessions for underprivileged children.</li><li>Volunteered at MINDSville, a Singapore non-profit serving people aged six and above with intellectual and developmental disabilities.</li></ul></div>
+          </div></div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block about t-grey" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="block-head reveal"><h2 id="about-h">About</h2></div>
+      <div class="grid">
+        <div class="photo reveal"><img src="photo.jpg" alt="Raphaël Lansonneur" width="880" height="1100" loading="lazy" decoding="async"></div>
+        <div class="about-text">
+          <p class="reveal">I’m interested in innovation and entrepreneurship, and in the start-up ecosystem that turns new ideas into companies.</p>
+          <p class="reveal"><span class="m">I co-founded my first company in my final semester at Brown, co-captained a D1 national championship rugby team, and learned to sell at Gartner. Away from work I love films and the culinary arts, and I train Muay Thai, snowboard, surf, and play the piano and chess.</span></p>
+          <dl class="kv reveal">
+            <div><dt>Languages</dt><dd><ul class="langs"><li>French <span>Native</span></li><li>English <span>Native</span></li><li>Mandarin <span>Fluent</span></li><li>Spanish <span>Basic</span></li></ul></dd></div>
+            <div><dt>Tools</dt><dd>Web design, Claude Code, Excel, PowerPoint, Word, Google Workspace, Salesforce</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact t-red" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h" class="reveal">Let’s talk.</h2>
+      <a class="mail u on" href="mailto:raphael.lansonneur26@imperial.ac.uk">raphael.lansonneur26@imperial.ac.uk</a>
+      <div class="links">
+        <a class="btn solid" href="cv.pdf">Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/raphael-lansonneur" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="t-dark">
+  <div class="wrap">
+    <p>©&nbsp;2026 Raphaël Lansonneur <span lang="zh-Hans">雷赫非</span></p>
+    <p>London</p>
+  </div>
+</footer>
+
+<script src="lenis.min.js"></script>
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---------- Smooth scrolling (Lenis), off for reduced motion ---------- */
+  var lenis = null;
+  if (!reduce && window.Lenis) {
+    try { lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true }); } catch (e) { lenis = null; }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      var t = id === '#top' ? document.body : document.querySelector(id);
+      if (!t) return;
+      if (lenis) { e.preventDefault(); lenis.scrollTo(id === '#top' ? 0 : t, { offset: id === '#journey' ? -96 : -64 }); }
+    });
+  });
+
+  /* ---------- Intro: words turn white as you scroll ---------- */
+  var introP = document.querySelector('.intro-text'), introSec = document.querySelector('.intro'), words = [];
+  if (introP) {
+    var txt = introP.textContent.trim().split(/\s+/);
+    introP.setAttribute('aria-label', introP.textContent.trim());
+    introP.innerHTML = txt.map(function (w) { return '<span class="wd" aria-hidden="true">' + w + '</span>'; }).join(' ');
+    words = Array.prototype.slice.call(introP.querySelectorAll('.wd'));
+    if (reduce) words.forEach(function (w) { w.classList.add('lit'); });
+  }
+  function lightIntro() {
+    if (!words.length || reduce) return;
+    var r = introP.getBoundingClientRect(), vh = window.innerHeight;
+    /* lights while the paragraph travels up: starts as it enters, done by the time it sits mid-screen */
+    var t = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55)));
+    var n = Math.round(t * words.length);
+    for (var i = 0; i < words.length; i++) words[i].classList.toggle('lit', i < n);
+  }
+
+  /* ---------- Expandable rows ---------- */
+  document.querySelectorAll('.row-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var li = btn.closest('li'), open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      li.classList.toggle('open', open);
+      if (lenis) setTimeout(function () { lenis.resize(); }, 600);
+    });
+  });
+
+  /* ---------- Dotted world map ---------- */
+  var LAND = [[39,3,47,1,50,1,53,2,56,6,63,4,74,31,164,2,187,8],[46,1,48,1,53,1,56,2,59,7,82,26,158,2,178,17,212,4,218,2],[37,6,49,1,52,3,56,3,61,2,64,5,83,20,104,2,156,2,170,1,174,17,193,6,202,2,214,2],[36,4,41,9,53,3,60,2,63,8,85,20,154,3,166,2,172,2,175,31,213,7],[13,6,45,7,56,3,61,13,84,1,86,17,104,2,136,4,165,4,170,57],[11,17,30,11,44,4,50,2,54,2,57,4,63,3,67,1,69,5,87,16,130,1,132,12,152,1,161,3,166,2,171,62,234,6],[0,3,11,36,48,18,69,1,72,6,84,14,130,17,149,1,152,16,170,70],[1,6,9,54,70,4,77,2,84,12,104,6,128,15,147,93],[11,50,62,3,68,9,85,8,105,5,128,6,136,7,145,93],[10,50,73,2,87,5,126,6,134,106],[9,48,68,4,87,5,123,8,134,90,227,1,229,7],[9,1,11,7,19,2,25,32,68,5,90,1,123,10,135,1,140,83,228,2,233,1],[15,2,28,30,68,10,117,1,124,2,128,3,136,78,226,2],[14,1,17,1,31,29,69,10,116,3,126,1,128,3,134,79,224,5],[12,1,31,32,68,12,116,3,125,3,129,1,134,77,224,4],[31,1,33,32,67,15,113,3,118,2,126,1,128,1,130,81,224,3],[35,31,68,15,114,2,117,4,124,90,215,1,224,2],[35,46,82,1,117,97,215,1],[36,39,81,3,120,94,215,1],[37,1,39,34,74,1,80,5,117,96],[37,40,79,1,119,21,142,2,145,67],[37,38,77,2,119,9,130,10,142,2,145,66,214,1,218,1],[37,36,114,2,119,6,127,2,131,8,147,63,214,3],[37,36,114,8,128,2,133,6,148,59,213,1,215,1],[37,34,114,6,126,1,130,2,133,3,138,62,202,4,213,1],[38,32,114,6,134,2,138,61,203,2,213,1],[38,32,114,5,129,1,134,2,138,61,200,1,204,2,211,3],[39,30,120,7,138,1,144,56,204,2,211,3],[40,28,116,11,144,56,208,3],[42,25,114,14,143,58,207,2],[42,1,44,22,113,17,133,5,140,1,143,58,207,1],[43,1,45,15,63,3,114,38,153,49],[44,1,46,10,65,1,112,40,154,47],[44,1,47,8,65,2,111,32,144,9,156,1,158,42],[45,1,47,8,110,33,145,9,157,1,159,41],[46,1,49,6,110,34,145,13,165,33,200,1],[50,5,64,1,66,1,109,35,146,14,167,29,200,1],[50,5,60,2,68,2,109,36,146,13,167,11,181,11,193,1],[16,1,50,6,60,2,71,2,109,36,147,11,168,9,182,9,193,1],[52,9,68,1,72,1,75,1,109,37,148,10,169,7,183,8,200,1],[54,7,109,37,148,7,169,6,183,1,185,7,200,1],[58,7,109,38,149,5,169,4,185,8,200,1],[60,4,109,39,149,2,170,4,186,7],[62,2,72,1,109,40,170,3,186,1,189,4,202,2],[63,1,70,6,77,1,110,39,150,4,171,2,190,2,202,1],[64,4,69,10,111,43,171,1,173,1,186,1,198,1,203,1],[65,2,68,13,112,41,173,2,186,1,201,1,203,1],[68,14,113,8,123,30,187,1,197,1],[68,17,124,1,126,26,184,1,187,2,196,3,204,1],[68,18,127,24,185,4,195,3],[67,20,126,24,186,2,189,1,193,6,203,1],[67,19,126,23,185,4,193,5],[66,21,88,2,126,22,187,3,193,5,200,2,207,2],[66,28,127,20,188,3,193,1,195,3,199,1,201,1,205,2,208,2,211,4],[66,29,128,18,189,2,211,6,221,1],[66,31,128,18,191,1,212,6,219,2,223,1],[67,30,129,17,191,4,207,1,212,6],[68,29,129,17,203,1,214,2,218,1],[68,28,129,18],[69,26,129,18,208,2],[69,25,128,19,152,1,207,4,214,2],[70,24,128,19,151,3,204,6,214,3],[71,23,128,19,150,3,202,10,214,3,239,1],[73,21,128,17,149,4,202,15,238,1],[73,20,129,15,150,3,201,17],[73,20,129,14,149,3,197,22,231,1],[73,19,130,14,149,3,196,24],[73,16,130,14,149,3,196,25],[73,15,130,12,196,26],[73,15,130,12,196,26],[72,15,131,11,196,26],[72,15,131,10,197,25],[72,13,132,8,197,25],[72,13,132,7,197,6,209,12],[72,9,82,2,133,1,197,3,210,1,212,9],[71,11,213,7],[71,11,213,7,236,1],[71,8,236,3],[71,7,216,1,237,1],[71,6,217,2,234,2],[71,6,233,2],[70,6,231,3],[70,5,232,1],[71,5],[70,5,166,1],[71,3],[71,3],[71,1,73,2],[74,1]];
+  var STEP = 1.5, LAT0 = 76.5, LON0 = -180 + STEP / 2;
+  var pts = [];
+  LAND.forEach(function (runs, r) {
+    for (var k = 0; k < runs.length; k += 2)
+      for (var c = runs[k]; c < runs[k] + runs[k + 1]; c++) pts.push(LON0 + c * STEP, -(LAT0 - r * STEP));
+  });
+  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  var cities = stops.map(function (s) { return { x: +s.dataset.lon, y: -(+s.dataset.lat) }; });
+  // Unwrap longitudes so each leg takes the short way round
+  for (var i = 1; i < cities.length; i++) {
+    while (cities[i].x - cities[i - 1].x > 180) cities[i].x -= 360;
+    while (cities[i].x - cities[i - 1].x < -180) cities[i].x += 360;
+  }
+  var ticks = document.querySelectorAll('.ticks b');
+  var header = document.querySelector('.top');
+  var themed = Array.prototype.slice.call(document.querySelectorAll('main > section, footer')).map(function (el) {
+    var m = (el.className.match(/\bt-(grey|red|dark)\b/) || [0, 'dark']); el.dataset.t = 't-' + m[1]; return el;
+  });
+  var cs0 = getComputedStyle(root), fontFam = getComputedStyle(document.body).fontFamily;
+  var colors = { dot: cs0.getPropertyValue('--dot').trim(), fg: cs0.getPropertyValue('--fg').trim(), accent: cs0.getPropertyValue('--accent').trim(), bg: '#0A0A0A' };
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var ease = function (t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  function sizeCanvas(cv) {
+    var r = cv.getBoundingClientRect();
+    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+    return { w: r.width, h: r.height, ctx: cv.getContext('2d') };
+  }
+  function drawDots(g, cam) {
+    var k = cam.k, r = Math.max(0.7, Math.min(2.6, k * STEP * 0.15));
+    g.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.ctx.clearRect(0, 0, g.w, g.h);
+    g.ctx.fillStyle = colors.dot;
+    g.ctx.beginPath();
+    for (var i = 0; i < pts.length; i += 2) {
+      var lon = pts[i];
+      while (lon - cam.x > 180) lon -= 360;   // nearest wrapped copy
+      while (lon - cam.x < -180) lon += 360;
+      var x = cam.sx + (lon - cam.x) * k, y = cam.sy + (pts[i + 1] - cam.y) * k;
+      if (x < -4 || x > g.w + 4 || y < -4 || y > g.h + 4) continue;
+      g.ctx.moveTo(x + r, y); g.ctx.arc(x, y, r, 0, 6.2832);
+    }
+    g.ctx.fill();
+  }
+
+  /* Journey card: the route plays by itself once the card is on screen */
+  var mapCv = document.getElementById('map'), card = document.getElementById('journey'), G = null;
+  var btn = document.querySelector('.play');
+  function legPoint(a, b, t) {
+    // quadratic arc bowed sideways from the straight line, toward the pole where possible
+    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, d = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+    var nx = -(b.y - a.y) / d, ny = (b.x - a.x) / d;
+    if (ny > 0) { nx = -nx; ny = -ny; }
+    var cx = mx + nx * d * 0.28, cy = my + ny * d * 0.28;
+    var u = 1 - t;
+    return { x: u * u * a.x + 2 * u * t * cx + t * t * b.x, y: u * u * a.y + 2 * u * t * cy + t * t * b.y };
+  }
+  function camera(prog) {
+    // prog: 0 = whole world, 0..1 zooming to the first city, then 1..n travelling between cities
+    var W = G.w, H = G.h, stacked = window.innerWidth <= 980;
+    var worldK = Math.max(W / 360 * 1.15, H / 150), focusK = Math.min(W, H * 1.4) / 75;
+    var worldC = { x: 15, y: -25 };
+    // where the camera centre sits once zoomed in (clear of the overlaid panel on wide screens)
+    var ax = stacked ? W / 2 : W * 0.64, ay = stacked ? H / 2 : H * 0.36;
+    if (prog <= 0) return { x: worldC.x, y: worldC.y, k: worldK, sx: W / 2, sy: H / 2 };
+    if (prog < 1) {
+      var t = ease(prog);
+      return { x: lerp(worldC.x, cities[0].x, t), y: lerp(worldC.y, cities[0].y, t), k: lerp(worldK, focusK, t), sx: lerp(W / 2, ax, t), sy: lerp(H / 2, ay, t) };
+    }
+    var i = Math.min(Math.floor(prog - 1), cities.length - 2), f = ease(prog - 1 - i);
+    var p = legPoint(cities[i], cities[i + 1], f);
+    var d = Math.hypot(cities[i + 1].x - cities[i].x, cities[i + 1].y - cities[i].y);
+    var pull = Math.min(1, d / 90) * Math.sin(Math.PI * f) * 0.6; // zoom out on long legs
+    return { x: p.x, y: p.y, k: focusK * (1 - pull), sx: ax, sy: ay };
+  }
+  // Timeline (ms): zoom in, then for each leg hold on the city and travel to the next
+  var ZOOM = 1200, HOLD = 1800, TRAVEL = 1100, LEGS = cities.length - 1;
+  var TOTAL = ZOOM + LEGS * (HOLD + TRAVEL);
+  function progAt(e) {
+    if (e <= 0) return 0;
+    if (e < ZOOM) return reduce ? 1 : e / ZOOM;
+    e -= ZOOM;
+    var leg = Math.min(LEGS - 1, Math.floor(e / (HOLD + TRAVEL))), r = e - leg * (HOLD + TRAVEL);
+    if (leg >= LEGS - 1 && r >= HOLD + TRAVEL) return 1 + LEGS;
+    var f = r < HOLD ? 0 : Math.min(1, (r - HOLD) / TRAVEL);
+    if (reduce) f = f >= 1 ? 1 : 0;   // cut between cities instead of flying
+    return 1 + leg + f;
+  }
+  var tl = { started: false, playing: false, paused: false, seen: false, elapsed: 0, last: 0 };
+  function setBtn() {
+    if (!btn) return;
+    var done = tl.elapsed >= TOTAL, label, icon;
+    if (done) { label = 'Replay'; icon = '<path d="M5 1a4 4 0 1 0 4 4H7.6A2.6 2.6 0 1 1 5 2.4V4l2.5-2L5 0z"/>'; }
+    else if (tl.paused) { label = 'Play'; icon = '<path d="M1.5 0.5v9l8-4.5z"/>'; }
+    else { label = 'Pause'; icon = '<rect x="1" y="0" width="3" height="10"/><rect x="6" y="0" width="3" height="10"/>'; }
+    btn.querySelector('span').textContent = label;
+    btn.querySelector('svg').innerHTML = icon;
+    btn.setAttribute('aria-label', label + ' the journey');
+  }
+  if (btn) btn.addEventListener('click', function () {
+    if (tl.elapsed >= TOTAL) { tl.elapsed = 0; tl.paused = false; tl.started = true; }
+    else tl.paused = !tl.paused;
+    setBtn();
+  });
+  if (card && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        tl.seen = e.isIntersecting;
+        if (e.isIntersecting && e.intersectionRatio >= 0.6) tl.started = true;
+      });
+    }, { threshold: [0, 0.6] }).observe(card);
+  } else tl.started = tl.seen = true;
+  var state = { prog: 0 };
+  function updatePanel(prog) {
+    var cur = prog < 1 ? 0 : Math.min(cities.length - 1, Math.round(prog - 1));
+    stops.forEach(function (s, j) { s.classList.toggle('on', j === cur); });
+    for (var j = 0; j < ticks.length; j++) {
+      var v = prog < 1 ? 0 : Math.max(0, Math.min(1, prog - j));
+      ticks[j].style.setProperty('--f', v.toFixed(3));
+    }
+  }
+  function drawMap(now) {
+    if (!G || !G.w) return;
+    var prog = state.prog, cam = camera(prog), ctx = G.ctx, k = cam.k;
+    drawDots(G, cam);
+    if (prog <= 0.02) return;
+    var P = function (pt) { return { x: cam.sx + (pt.x - cam.x) * k, y: cam.sy + (pt.y - cam.y) * k }; };
+    var done = Math.max(0, prog - 1);
+    ctx.strokeStyle = colors.accent; ctx.lineWidth = 2; ctx.lineCap = 'round';
+    var curLeg = Math.min(cities.length - 2, Math.floor(done));
+    for (var l = 0; l < cities.length - 1; l++) {
+      var f = Math.max(0, Math.min(1, done - l));
+      if (f <= 0) break;
+      ctx.globalAlpha = l === curLeg ? 1 : 0.3;
+      ctx.beginPath();
+      var steps = 48, s0 = P(cities[l]);
+      ctx.moveTo(s0.x, s0.y);
+      for (var s = 1; s <= Math.ceil(steps * f); s++) {
+        var q = P(legPoint(cities[l], cities[l + 1], Math.min(f, s / steps)));
+        ctx.lineTo(q.x, q.y);
+      }
+      ctx.stroke();
+    }
+    var pulse = reduce ? 0 : (now / 1600) % 1;
+    for (var c = 0; c < cities.length; c++) {
+      if (!(done >= c - 0.03 || (c === 0 && prog >= 0.6))) continue;
+      var p = P(cities[c]);
+      var current = Math.min(cities.length - 1, Math.round(done)) === c;
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = colors.bg; ctx.beginPath(); ctx.arc(p.x, p.y, 6.5, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = colors.accent; ctx.beginPath(); ctx.arc(p.x, p.y, current ? 5 : 3.5, 0, 6.2832); ctx.fill();
+      if (current && pulse) {
+        ctx.globalAlpha = 1 - pulse; ctx.strokeStyle = colors.accent; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 6 + pulse * 22, 0, 6.2832); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      if (current) {
+        ctx.fillStyle = colors.fg; ctx.font = '500 14px ' + fontFam;
+        ctx.fillText(stops[c].querySelector('.city').textContent, p.x + 12, p.y - 10);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  function page() {
+    var y = window.scrollY, vh = window.innerHeight;
+    var docH = document.documentElement.scrollHeight - vh;
+    root.style.setProperty('--p', (y / Math.max(1, docH)).toFixed(4));
+    // header takes the colours of the section beneath it
+    var probe = y + 40, theme = 't-dark';
+    for (var q = 0; q < themed.length; q++) if (themed[q].offsetTop <= probe) theme = themed[q].dataset.t;
+    if (header.dataset.t !== theme) { header.classList.remove(header.dataset.t || 'x'); header.classList.add(theme); header.dataset.t = theme; }
+  }
+  function sizeAll() { if (mapCv) G = sizeCanvas(mapCv); }
+  function frame(now) {
+    if (lenis) lenis.raf(now);
+    var dt = tl.last ? Math.min(100, now - tl.last) : 0; tl.last = now;
+    // the clock only runs while the card is on screen and not paused
+    var was = tl.elapsed >= TOTAL;
+    if (tl.started && tl.seen && !tl.paused && tl.elapsed < TOTAL) tl.elapsed = Math.min(TOTAL, tl.elapsed + dt);
+    if (!was && tl.elapsed >= TOTAL) setBtn();
+    state.prog = progAt(tl.elapsed);
+    page(); lightIntro(); updatePanel(state.prog);
+    if (tl.seen) drawMap(now);
+    requestAnimationFrame(frame);
+  }
+  sizeAll(); updatePanel(0); drawMap(0);
+  var rT; window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(sizeAll, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fontFam = getComputedStyle(document.body).fontFamily; });
+  requestAnimationFrame(frame);
+
+  /* ---------- Active section in the nav ---------- */
+  var links = {};
+  document.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!links[e.target.id]) return;
+      if (e.isIntersecting) { Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === e.target.id); }); }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['journey', 'experience', 'education', 'about'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+})();
+</script>
+<script>
+/* Ink hero: a hand-drawn figure of Raphaël cycling through his activities.
+   One rigged figure (two-bone arms and legs solved by IK), posed by keyframes per scene,
+   with props attached to hands or the world. A turbulence filter re-seeded a few times a
+   second gives the wobbly "boiling" line of hand-drawn animation. */
+(function () {
+  var svg = document.getElementById('ink');
+  if (!svg) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+  var INK = '#E8E8E8', BG = '#030303';
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var GROUND = 330;
+  var world = el('g', { filter: reduce ? '' : 'url(#boil)' }, svg);
+  var back = el('g', {}, world);      // scenery behind the figure
+  var fig = el('g', {}, world);
+  var front = el('g', {}, world);     // props in front of the figure
+
+  // ---- figure parts (local coordinates: hips at 0,0, facing right) ----
+  var A = 54, B = 52, T = 60, S = 58;          // upper arm, forearm, thigh, shin
+  function limb(parent, a, b, w, end, sleeve) {
+    // one outlined tube from joint to joint, drawn as a single path so the elbow/knee has no seam
+    var outer = el('path', { stroke: INK, 'stroke-width': w, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', fill: 'none' }, parent);
+    var core = el('path', { stroke: BG, 'stroke-width': w - 6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', fill: 'none' }, parent);
+    var tip = el('g', {}, parent), sl = null;
+    if (sleeve) sl = [
+      el('path', { stroke: INK, 'stroke-width': 23, 'stroke-linecap': 'round', fill: 'none' }, parent),
+      el('path', { stroke: BG, 'stroke-width': 17, 'stroke-linecap': 'round', fill: 'none' }, parent)
+    ];
+    if (end === 'foot') {
+      // bare feet, like the Hello Monday characters
+      el('path', { d: 'M-6 -2 Q-9 8 -4 10 L16 10 Q22 8 15 4 L6 0', fill: BG, stroke: INK, 'stroke-width': 3, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, tip);
+    }
+    if (end === 'foot') {
+      // solid trousers, like the Hello Monday overalls: one filled shape, wide at the hip, narrow at the ankle
+      outer.setAttribute('fill', INK); outer.setAttribute('stroke-width', 2); core.style.display = 'none';
+    }
+    return { outer: outer, core: core, tip: tip, sl: sl, a: a, b: b, end: end };
+  }
+  var root = el('g', {}, fig);
+  var legBack = limb(root, T, S, 20, 'foot');
+  var legFront = limb(root, T, S, 20, 'foot');
+  var torso = el('g', {}, root);
+  var armBack = limb(torso, A, B, 14, 'hand');
+  // the patterned jumper: a zigzag band between rows of small diamonds, kept slim
+  var jumper = el('g', { transform: 'scale(1.12 1.13)' }, torso);
+  el('path', { d: 'M-21 10 Q-25 -40 -22 -82 Q0 -94 22 -82 Q25 -40 21 10 Z', fill: BG, stroke: INK, 'stroke-width': 3, 'stroke-linejoin': 'round' }, jumper);
+  el('path', { d: 'M-21 -62 L-14 -56 L-7 -62 L0 -56 L7 -62 L14 -56 L21 -62', stroke: INK, 'stroke-width': 2.6, fill: 'none', 'stroke-linejoin': 'round' }, jumper);
+  [-14, 0, 14].forEach(function (x) { el('path', { d: 'M' + x + ' -48 l4 4 l-4 4 l-4 -4 Z', fill: INK }, jumper); });
+  [-7, 7].forEach(function (x) { el('path', { d: 'M' + x + ' -74 l3 3 l-3 3 l-3 -3 Z', fill: INK }, jumper); });
+  el('path', { d: 'M-21 -30 L21 -30', stroke: INK, 'stroke-width': 2.4 }, jumper);
+  el('path', { d: 'M-20 4 Q0 8 20 4', stroke: INK, 'stroke-width': 3.5, fill: 'none' }, jumper);
+  el('path', { d: 'M-8 -88 Q0 -82 8 -88', stroke: INK, 'stroke-width': 3, fill: 'none' }, jumper);
+  var head = el('g', { transform: 'translate(0 -9)' }, torso);
+  el('path', { d: 'M-4 -90 L-4 -101 M4 -90 L4 -101', stroke: INK, 'stroke-width': 2.6, 'stroke-linecap': 'round' }, head);
+  // a smaller head on a longer neck gives the slim Hello Monday proportions
+  var face = el('g', { transform: 'translate(0 -100) scale(0.72) translate(0 100)' }, head);
+  el('circle', { cx: 0, cy: -123, r: 24, fill: BG, stroke: INK, 'stroke-width': 3.6 }, face);
+  // hair swept back from a side part, close at the top, longer and wavy at the back down to the nape
+  el('path', { d: 'M23 -133 Q26 -146 14 -151 Q0 -155 -14 -151 Q-29 -146 -30 -130 Q-31 -115 -27 -104 Q-29 -97 -23 -95 Q-18 -101 -19 -110 Q-22 -123 -15 -132 Q-6 -141 8 -139 Q17 -138 23 -133 Z', fill: INK }, face);
+  el('path', { d: 'M-24 -140 Q-12 -148 2 -146', stroke: BG, 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round' }, face);
+  el('path', { d: 'M18 -139 Q26 -132 22 -122', stroke: INK, 'stroke-width': 3, fill: 'none', 'stroke-linecap': 'round' }, face);
+  var eye = el('ellipse', { cx: 12, cy: -122, rx: 2.8, ry: 2.8, fill: INK }, face);
+  el('path', { d: 'M21 -118 Q26 -112 21 -110', stroke: INK, 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, face);
+  var armFront = limb(torso, A, B, 14, 'hand');
+
+  var deg = 180 / Math.PI;
+  function ang(vx, vy) { return Math.atan2(-vx, vy) * deg; }   // rotation that points (0,1) along v
+  // outline of a limb that narrows from w0 (top) through w1 (joint) to w2 (end), with a soft joint
+  function taper(sx, sy, ex, ey, hx, hy, w0, w1, w2) {
+    function nrm(ax, ay, bx, by) { var dx = bx - ax, dy = by - ay, l = Math.hypot(dx, dy) || 1; return [-dy / l, dx / l]; }
+    var n0 = nrm(sx, sy, ex, ey), n2 = nrm(ex, ey, hx, hy), n1 = [(n0[0] + n2[0]) / 2, (n0[1] + n2[1]) / 2];
+    var l1 = Math.hypot(n1[0], n1[1]) || 1; n1 = [n1[0] / l1, n1[1] / l1];
+    function pt(x, y, n, w, s) { return (x + n[0] * w * s).toFixed(1) + ' ' + (y + n[1] * w * s).toFixed(1); }
+    return 'M' + pt(sx, sy, n0, w0, 1) + ' Q' + pt(ex, ey, n1, w1, 1) + ' ' + pt(hx, hy, n2, w2, 1) +
+      ' L' + pt(hx, hy, n2, w2, -1) + ' Q' + pt(ex, ey, n1, w1, -1) + ' ' + pt(sx, sy, n0, w0, -1) + ' Z';
+  }
+  function solve(L, sx, sy, tx, ty, bend) {
+    var dx = tx - sx, dy = ty - sy, d = Math.hypot(dx, dy);
+    d = Math.max(Math.abs(L.a - L.b) + 1, Math.min(L.a + L.b - 0.5, d));
+    var al = Math.acos((L.a * L.a + d * d - L.b * L.b) / (2 * L.a * d)) * deg;
+    var base = ang(dx, dy), t1 = base + bend * al;
+    if (L.end === 'hand') {
+      // pick whichever elbow hangs lower, so arms never fold the wrong way
+      var ta = base + al, tb = base - al;
+      var sa = Math.cos(ta / deg) - 0.6 * Math.sin(ta / deg), sb = Math.cos(tb / deg) - 0.6 * Math.sin(tb / deg);
+      if (L.side === undefined) L.side = sa >= sb ? 1 : -1;
+      else if (L.side === 1 && sb > sa + 0.35) L.side = -1;
+      else if (L.side === -1 && sa > sb + 0.35) L.side = 1;
+      t1 = L.side === 1 ? ta : tb;
+    }
+    var r1 = t1 / deg, ex = sx - L.a * Math.sin(r1), ey = sy + L.a * Math.cos(r1);
+    var t2 = ang(tx - ex, ty - ey);
+    var r2 = t2 / deg, hx = ex - L.b * Math.sin(r2), hy = ey + L.b * Math.cos(r2);
+    var d;
+    if (L.end === 'hand') {
+      // one soft curve through the elbow instead of a hinge
+      var cx = 2 * ex - (sx + hx) / 2, cy = 2 * ey - (sy + hy) / 2;
+      d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + ' Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + hx.toFixed(1) + ' ' + hy.toFixed(1);
+    } else d = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + ' L' + ex.toFixed(1) + ' ' + ey.toFixed(1) + ' L' + hx.toFixed(1) + ' ' + hy.toFixed(1);
+    if (L.end === 'foot') d = taper(sx, sy, ex, ey, hx, hy, 10.5, 8.5, 6.5);
+    L.outer.setAttribute('d', d); L.core.setAttribute('d', d);
+    if (L.sl) {
+      // short oversized sleeve over the top of the upper arm
+      var r1b = t1 / deg, k = 0.62, sd = 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + ' L' + (sx - L.a * k * Math.sin(r1b)).toFixed(1) + ' ' + (sy + L.a * k * Math.cos(r1b)).toFixed(1);
+      L.sl[0].setAttribute('d', sd); L.sl[1].setAttribute('d', sd);
+    }
+    // feet stay level with the ground; hands follow the forearm
+    var fr = t2;
+    if (L.end === 'foot') { var lift = Math.max(0, Math.min(1, (70 - ty) / 50)); fr = lift * (t2 + 90); }
+    L.tip.setAttribute('transform', 'translate(' + hx.toFixed(1) + ' ' + hy.toFixed(1) + ') rotate(' + fr.toFixed(1) + ')');
+    return { x: hx, y: hy, a: t2 };
+  }
+  function rot(x, y, a) { var r = a / deg, c = Math.cos(r), s = Math.sin(r); return [x * c - y * s, x * s + y * c]; }
+
+  // ---- props ----
+  function prop(parent, build) { var g = el('g', { style: 'display:none' }, parent); build(g); return g; }
+  var P = {};
+  P.ball = prop(front, function (g) {
+    el('ellipse', { cx: 0, cy: 0, rx: 17, ry: 11, fill: BG, stroke: INK, 'stroke-width': 4 }, g);
+    el('path', { d: 'M-7 0 L7 0 M-4 -3 L-4 3 M0 -3 L0 3 M4 -3 L4 3', stroke: INK, 'stroke-width': 2.2 }, g);
+  });
+  P.bag = prop(back, function (g) {
+    el('path', { d: 'M0 -240 L0 -190', stroke: INK, 'stroke-width': 3 }, g);
+    el('rect', { x: -22, y: -192, width: 44, height: 120, rx: 18, fill: BG, stroke: INK, 'stroke-width': 4 }, g);
+    el('path', { d: 'M-22 -160 L22 -160 M-22 -104 L22 -104', stroke: INK, 'stroke-width': 3 }, g);
+  });
+  P.surf = prop(back, function (g) {
+    el('path', { d: 'M-95 0 Q-90 -12 -40 -12 L80 -10 Q112 -8 108 2 Q100 10 70 10 L-80 10 Q-98 8 -95 0 Z', fill: INK }, g);
+  });
+  P.bigwave = prop(back, function (g) {
+    // a breaking wave rising behind the surfer, its lip curling over to the right
+    P.waveBody = el('g', {}, g);
+    el('path', { d: 'M392 338 L262 336 C192 334 132 300 110 230 C98 190 102 160 132 152 C162 146 180 168 166 188 C156 200 138 196 138 184 C138 176 146 172 152 176', fill: 'none', stroke: INK, 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, P.waveBody);
+    el('path', { d: 'M122 153 C84 150 54 196 8 236', fill: 'none', stroke: INK, 'stroke-width': 4, 'stroke-linecap': 'round' }, P.waveBody);
+    el('path', { d: 'M236 330 C186 322 148 292 132 240 M196 334 C160 324 128 286 118 212', fill: 'none', stroke: INK, 'stroke-width': 2.4, 'stroke-linecap': 'round' }, P.waveBody);
+    P.spray = [];
+    for (var i = 0; i < 6; i++) P.spray.push(el('circle', { r: 2.2, fill: INK }, g));
+  });
+  P.wave = prop(back, function (g) { P.wavePath = el('path', { stroke: INK, 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round' }, g); });
+  P.snowboard = prop(back, function (g) {
+    el('path', { d: 'M-90 -4 Q-96 6 -84 8 L84 8 Q96 6 90 -4 Z', fill: INK }, g);
+  });
+  P.slope = prop(back, function (g) {
+    P.slopeLines = [];
+    for (var i = 0; i < 9; i++) P.slopeLines.push(el('path', { stroke: INK, 'stroke-width': 3, 'stroke-linecap': 'round', fill: 'none' }, g));
+  });
+  P.table = prop(back, function (g) {
+    el('path', { d: 'M0 0 L130 0', stroke: INK, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+    el('path', { d: 'M18 0 L12 92 M112 0 L118 92', stroke: INK, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+  });
+  P.stool = prop(back, function (g) {
+    el('path', { d: 'M-24 0 L24 0', stroke: INK, 'stroke-width': 6, 'stroke-linecap': 'round' }, g);
+    el('path', { d: 'M-16 0 L-20 84 M16 0 L20 84', stroke: INK, 'stroke-width': 4.5, 'stroke-linecap': 'round' }, g);
+  });
+  P.board = prop(back, function (g) {
+    el('path', { d: 'M40 -4 L104 -4 L100 -12 L44 -12 Z', fill: BG, stroke: INK, 'stroke-width': 3.5, 'stroke-linejoin': 'round' }, g);
+    // pieces
+    el('path', { d: 'M82 -12 L82 -24 M79 -26 L85 -26', stroke: INK, 'stroke-width': 4, 'stroke-linecap': 'round' }, g);
+    el('path', { d: 'M96 -12 L96 -22', stroke: INK, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+    el('circle', { cx: 96, cy: -26, r: 4, fill: INK }, g);
+  });
+  P.piece = prop(front, function (g) {
+    el('path', { d: 'M0 0 L0 -14', stroke: INK, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+    el('circle', { cx: 0, cy: -18, r: 4.5, fill: BG, stroke: INK, 'stroke-width': 3 }, g);
+  });
+  P.pan = prop(front, function (g) {
+    el('path', { d: 'M-4 0 L34 0', stroke: INK, 'stroke-width': 6, 'stroke-linecap': 'round' }, g);
+    el('path', { d: 'M32 -4 L84 -4 Q82 8 72 8 L44 8 Q34 8 32 -4 Z', fill: INK }, g);
+  });
+  P.food = prop(front, function (g) {
+    el('ellipse', { cx: 0, cy: 0, rx: 18, ry: 5, fill: BG, stroke: INK, 'stroke-width': 3.5 }, g);
+    el('circle', { cx: 0, cy: -1, r: 4, fill: INK }, g);
+  });
+  P.stove = prop(back, function (g) {
+    el('path', { d: 'M0 0 L150 0 M8 0 L8 92 M142 0 L142 92', stroke: INK, 'stroke-width': 5, 'stroke-linecap': 'round' }, g);
+    P.flame = el('path', { d: 'M62 -2 Q66 -14 70 -4 Q74 -16 78 -4 Q82 -14 86 -2', stroke: INK, 'stroke-width': 2.5, fill: 'none', 'stroke-linecap': 'round' }, g);
+  });
+  P.piano = prop(back, function (g) {
+    // upright piano: body, keyboard shelf, keys, music stand
+    el('path', { d: 'M8 0 L8 -82 Q8 -88 14 -88 L116 -88 L116 96 L8 96 Z', fill: BG, stroke: INK, 'stroke-width': 4, 'stroke-linejoin': 'round' }, g);
+    el('path', { d: 'M-4 0 L116 0 M-4 0 L-4 10 L116 10', stroke: INK, 'stroke-width': 4, fill: 'none', 'stroke-linejoin': 'round' }, g);
+    for (var k = 0; k < 9; k++) if (k % 7 !== 2 && k % 7 !== 6) el('path', { d: 'M' + (6 + k * 12) + ' -1 L' + (6 + k * 12) + ' -7', stroke: INK, 'stroke-width': 4.5, 'stroke-linecap': 'round' }, g);
+    el('path', { d: 'M30 -40 L70 -40 L72 -62 L32 -62 Z', fill: BG, stroke: INK, 'stroke-width': 3, 'stroke-linejoin': 'round' }, g);
+    el('path', { d: 'M38 -54 L62 -54 M38 -48 L58 -48', stroke: INK, 'stroke-width': 2 }, g);
+  });
+  P.notes = prop(front, function (g) {
+    P.noteEls = [];
+    for (var i = 0; i < 3; i++) {
+      var n = el('g', {}, g);
+      el('ellipse', { cx: 0, cy: 0, rx: 5, ry: 3.6, fill: INK, transform: 'rotate(-20)' }, n);
+      el('path', { d: 'M4 -1 L4 -20 Q10 -16 12 -10', stroke: INK, 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, n);
+      P.noteEls.push(n);
+    }
+  });
+  P.snow = prop(back, function (g) { P.flakes = []; for (var i = 0; i < 14; i++) P.flakes.push(el('circle', { r: 2.2, fill: INK }, g)); });
+  P.ground = el('path', { fill: INK }, back);
+
+  // ---- scenes ----
+  // A pose: x,y (hips), r (body tilt), lean (torso), head, hands [front, back] and feet [front, back]
+  // in hip coordinates (hands relative to hips too), plus optional prop state.
+  var stand = { x: 200, y: GROUND - 120, r: 0, lean: 0, head: 0 };
+  function P0(o) { var p = {}; for (var k in stand) p[k] = stand[k]; for (k in o) p[k] = o[k]; return p; }
+  var scenes = [
+    { id: 'rugby', label: 'Rugby', dur: 2800, ground: true, props: ['ball'],
+      keys: [
+        [0, P0({ y: GROUND - 114, lean: 8, hf: [50, -40], hb: [36, -38], ff: [24, 114], fb: [-22, 114], ball: [46, -46, 0] })],
+        [0.22, P0({ y: GROUND - 112, lean: 10, head: 6, hf: [46, -30], hb: [32, -28], ff: [24, 112], fb: [-22, 112], ball: [42, -36, 0] })],
+        [0.36, P0({ y: GROUND - 122, lean: -4, head: -10, hf: [58, -126], hb: [44, -122], ff: [14, 120], fb: [-14, 120], ball: [54, -140, 160] })],
+        [0.55, P0({ y: GROUND - 120, lean: -4, head: -16, hf: [56, -116], hb: [42, -112], ff: [14, 120], fb: [-14, 120], ball: [54, -168, 420] })],
+        [0.74, P0({ y: GROUND - 120, lean: -2, head: -12, hf: [58, -126], hb: [44, -122], ff: [14, 120], fb: [-14, 120], ball: [54, -140, 700] })],
+        [1, P0({ y: GROUND - 114, lean: 8, hf: [50, -40], hb: [36, -38], ff: [24, 114], fb: [-22, 114], ball: [46, -46, 720] })]
+      ] },
+    { id: 'muay', label: 'Muay Thai', dur: 2500, ground: true, props: ['bag'],
+      keys: [
+        [0, P0({ x: 170, lean: 6, hf: [44, -100], hb: [32, -96], ff: [20, 118], fb: [-22, 118], kb: -1, bag: 0 })],
+        [0.2, P0({ x: 170, lean: 4, hf: [46, -98], hb: [34, -94], ff: [22, 118], fb: [-22, 118], kb: -1, bag: 0 })],
+        [0.32, P0({ x: 168, lean: -10, head: 6, hf: [30, -100], hb: [-10, -50], ff: [70, 16], fb: [-8, 120], kb: -1, bag: 0 })],
+        [0.42, P0({ x: 166, lean: -22, head: 10, hf: [14, -100], hb: [-30, -44], ff: [112, -36], fb: [-6, 120], kb: -1, bag: 0 })],
+        [0.52, P0({ x: 166, lean: -24, head: 10, hf: [12, -98], hb: [-34, -40], ff: [114, -40], fb: [-6, 120], kb: -1, bag: 9 })],
+        [0.64, P0({ x: 168, lean: -10, head: 6, hf: [30, -100], hb: [-10, -50], ff: [70, 16], fb: [-8, 120], kb: -1, bag: -6 })],
+        [0.8, P0({ x: 170, lean: 6, hf: [44, -100], hb: [32, -96], ff: [20, 118], fb: [-22, 118], kb: -1, bag: 3 })],
+        [1, P0({ x: 170, lean: 6, hf: [44, -100], hb: [32, -96], ff: [20, 118], fb: [-22, 118], kb: -1, bag: 0 })]
+      ] },
+    { id: 'surf', label: 'Surfing', dur: 2600, ground: false, props: ['bigwave', 'surf', 'wave'],
+      keys: [
+        [0, P0({ x: 238, y: GROUND - 108, r: -15, lean: 16, head: -4, hf: [110, -17], hb: [-86, -105], ff: [36, 96], fb: [-38, 96] })],
+        [0.5, P0({ x: 230, y: GROUND - 100, r: -9, lean: 20, head: -8, hf: [101, -1], hb: [-73, -126], ff: [36, 96], fb: [-38, 96] })],
+        [1, P0({ x: 238, y: GROUND - 108, r: -15, lean: 16, head: -4, hf: [110, -17], hb: [-86, -105], ff: [36, 96], fb: [-38, 96] })]
+      ] },
+    { id: 'snow', label: 'Snowboarding', dur: 2400, ground: false, props: ['snowboard', 'slope', 'snow'],
+      keys: [
+        [0, P0({ y: GROUND - 118, r: 14, lean: 12, head: -16, hf: [102, -18], hb: [-93, -86], ff: [30, 100], fb: [-32, 100] })],
+        [0.5, P0({ y: GROUND - 110, r: 16, lean: 18, head: -18, hf: [93, 0], hb: [-83, -82], ff: [30, 100], fb: [-32, 100] })],
+        [1, P0({ y: GROUND - 118, r: 14, lean: 12, head: -16, hf: [102, -18], hb: [-93, -86], ff: [30, 100], fb: [-32, 100] })]
+      ] },
+    { id: 'chess', label: 'Chess', dur: 3800, ground: true, props: ['stool', 'table', 'board', 'piece'],
+      keys: [
+        [0, P0({ x: 150, y: GROUND - 86, lean: 10, head: 10, hf: [58, -26], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [112, -18] })],
+        [0.12, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [112, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [112, -18] })],
+        [0.18, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [112, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.3, P0({ x: 150, y: GROUND - 86, lean: 18, head: 14, hf: [103, -56], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.4, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [94, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.46, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [94, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [94, -18] })],
+        [0.56, P0({ x: 150, y: GROUND - 86, lean: 10, head: 10, hf: [58, -26], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [94, -18] })],
+        [0.62, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [94, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [94, -18] })],
+        [0.68, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [94, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.8, P0({ x: 150, y: GROUND - 86, lean: 18, head: 14, hf: [103, -56], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.9, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [112, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: 'hand' })],
+        [0.95, P0({ x: 150, y: GROUND - 86, lean: 20, head: 16, hf: [112, -38], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [112, -18] })],
+        [1, P0({ x: 150, y: GROUND - 86, lean: 10, head: 10, hf: [58, -26], hb: [44, -24], ff: [62, 86], fb: [52, 86], kb: -1, piece: [112, -18] })]
+      ] },
+    { id: 'cook', label: 'Cooking', dur: 2600, ground: true, props: ['stove', 'pan', 'food'],
+      keys: [
+        [0, P0({ x: 150, lean: 6, head: 8, hf: [70, -62], hb: [30, -50], ff: [14, 118], fb: [-16, 118], pan: 0, food: 0 })],
+        [0.25, P0({ x: 150, lean: 2, head: -4, hf: [64, -92], hb: [30, -50], ff: [14, 118], fb: [-16, 118], pan: -16, food: 0.25 })],
+        [0.5, P0({ x: 150, lean: 0, head: -16, hf: [70, -70], hb: [30, -50], ff: [14, 118], fb: [-16, 118], pan: -2, food: 0.5 })],
+        [0.75, P0({ x: 150, lean: 4, head: 4, hf: [72, -62], hb: [30, -50], ff: [14, 118], fb: [-16, 118], pan: 0, food: 1 })],
+        [1, P0({ x: 150, lean: 6, head: 8, hf: [70, -62], hb: [30, -50], ff: [14, 118], fb: [-16, 118], pan: 0, food: 1 })]
+      ] },
+    { id: 'piano', label: 'Piano', dur: 2400, ground: true, props: ['stool', 'piano', 'notes'],
+      keys: [
+        [0, P0({ x: 150, y: GROUND - 86, lean: 6, head: 6, hf: [98, -12], hb: [74, -20], ff: [62, 86], fb: [52, 86], kb: -1 })],
+        [0.25, P0({ x: 150, y: GROUND - 86, lean: 9, head: 10, hf: [94, -20], hb: [78, -12], ff: [62, 86], fb: [52, 86], kb: -1 })],
+        [0.5, P0({ x: 150, y: GROUND - 86, lean: 5, head: 2, hf: [104, -12], hb: [72, -20], ff: [62, 86], fb: [52, 86], kb: -1 })],
+        [0.75, P0({ x: 150, y: GROUND - 86, lean: 10, head: 12, hf: [96, -20], hb: [80, -12], ff: [62, 86], fb: [52, 86], kb: -1 })],
+        [1, P0({ x: 150, y: GROUND - 86, lean: 6, head: 6, hf: [98, -12], hb: [74, -20], ff: [62, 86], fb: [52, 86], kb: -1 })]
+      ] }
+  ];
+  var ORDER = ['surf', 'snow', 'piano', 'muay', 'rugby', 'cook', 'chess'];
+  scenes = ORDER.map(function (id) { return scenes.filter(function (sc) { return sc.id === id; })[0]; });
+  var easeIO = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+  function mix(a, b, t) {
+    if (typeof a === 'number' && typeof b === 'number') return a + (b - a) * t;
+    if (Array.isArray(a) && Array.isArray(b)) return a.map(function (v, i) { return v + (b[i] - v) * t; });
+    return t < 0.5 ? a : b;
+  }
+  // Cubic Hermite through the keys (Catmull-Rom tangents), so the figure flows through each
+  // pose without stopping; repeated keys still hold, because their tangents come out flat.
+  function hermite(p0, p1, m0, m1, h, t) {
+    var t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * p0 + (t3 - 2 * t2 + t) * h * m0 + (-2 * t3 + 3 * t2) * p1 + (t3 - t2) * h * m1;
+  }
+  function slope(k, i, key, j) {
+    var n = k.length, a = k[Math.max(0, i - 1)], b = k[Math.min(n - 1, i + 1)];
+    // loops: the first and last keys match, so look across the seam
+    if (i === 0) a = [k[n - 2][0] - 1, k[n - 2][1]];
+    if (i === n - 1) b = [1 + k[1][0], k[1][1]];
+    var va = a[1][key], vb = b[1][key];
+    if (j !== undefined) { va = va && va[j]; vb = vb && vb[j]; }
+    if (typeof va !== 'number' || typeof vb !== 'number') return 0;
+    return (vb - va) / ((b[0] - a[0]) || 1);
+  }
+  // Hello Monday moves pose to pose: settle on a drawing, then snap to the next
+  function snap(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function poseAt(sc, u) {
+    var k = sc.keys, i = 0;
+    while (i < k.length - 2 && u > k[i + 1][0]) i++;
+    var a = k[i], b = k[i + 1], h = (b[0] - a[0]) || 1, t = Math.max(0, Math.min(1, (u - a[0]) / h));
+    var p = {};
+    for (var key in a[1]) {
+      var va = a[1][key], vb = b[1][key];
+      if (typeof va === 'number' && typeof vb === 'number') p[key] = va + (vb - va) * snap(t);
+      else if (Array.isArray(va) && Array.isArray(vb)) p[key] = va.map(function (v, j) { return v + (vb[j] - v) * snap(t); });
+      else p[key] = t < 0.5 ? va : vb;
+    }
+    p._raw = t; p._seg = i;
+    return p;
+  }
+  var shown = {}, PROPS = ['bigwave','ball','bag','surf','wave','snowboard','slope','table','stool','board','piece','pan','food','stove','snow','piano','notes'];
+  // a: outgoing scene, b: incoming scene, k: 0..1 how far the fade has gone
+  function fade(el, op) {
+    var on = op > 0.01;
+    el.style.display = on ? '' : 'none';
+    el.style.opacity = op >= 1 ? '' : op.toFixed(2);
+  }
+  function show(a, b, k) {
+    PROPS.forEach(function (n) {
+      var inA = a.props.indexOf(n) >= 0, inB = b.props.indexOf(n) >= 0;
+      fade(P[n], inA && inB ? 1 : inA ? 1 - k : inB ? k : 0);
+    });
+    fade(P.ground, a.ground && b.ground ? 1 : a.ground ? 1 - k : b.ground ? k : 0);
+  }
+
+  var clock = 0;
+  function body(p) {
+    root.setAttribute('transform', 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ') rotate(' + p.r.toFixed(2) + ')');
+    var breath = Math.sin(clock * 2.4);
+    torso.setAttribute('transform', 'rotate(' + (p.lean + breath * 0.8).toFixed(2) + ') translate(0 ' + (breath * 0.8).toFixed(2) + ')');
+    var bl = (clock % 3.7) < 0.12 ? 0.35 : 2.8;
+    eye.setAttribute('ry', bl);
+    head.setAttribute('transform', 'translate(0 -9) rotate(' + p.head.toFixed(2) + ' 0 -96)');
+    // hands are given in hip space; convert to torso space (undo lean)
+    var hf = rot(p.hf[0], p.hf[1], -p.lean), hb = rot(p.hb[0], p.hb[1], -p.lean);
+    var hF = solve(armFront, 20, -90, hf[0], hf[1], -1);
+    var hB = solve(armBack, -20, -90, hb[0], hb[1], -1);
+    solve(legFront, 9, 0, p.ff[0], p.ff[1], p.kb || 1);
+    solve(legBack, -9, 0, p.fb[0], p.fb[1], p.kb || 1);
+    // hand in world space
+    function toWorld(h) {
+      var a = rot(h.x, h.y, p.lean), b = rot(a[0], a[1], p.r);
+      return [p.x + b[0], p.y + b[1], h.a + p.lean + p.r];
+    }
+    return toWorld(hF);
+  }
+
+  // props for one scene. p is the pose the body is in (props held or stood on follow it);
+  // sx, sy anchor the furniture so it stays put while the figure moves between scenes.
+  function props(sc, p, wF, now, sx, sy) {
+    var t = now / 1000;
+    if (sc.id === 'rugby') {
+      P.ball.setAttribute('transform', 'translate(' + (p.x + p.ball[0]) + ' ' + (p.y + p.ball[1]) + ') rotate(' + p.ball[2] + ')');
+    }
+    if (sc.id === 'muay') {
+      P.bag.setAttribute('transform', 'translate(292 ' + GROUND + ') rotate(' + (-p.bag) + ' 0 -240)');
+    }
+    if (sc.id === 'surf') {
+      var bo = rot(0, 116, p.r);
+      P.surf.setAttribute('transform', 'translate(' + (p.x + bo[0]).toFixed(1) + ' ' + (p.y + bo[1]).toFixed(1) + ') rotate(' + p.r.toFixed(1) + ')');
+      // the wave breathes a little and throws spray off the lip
+      P.waveBody.setAttribute('transform', 'translate(' + (3 * Math.sin(t * 1.6)).toFixed(1) + ' ' + (2 * Math.sin(t * 1.6 + 1)).toFixed(1) + ')');
+      P.spray.forEach(function (c, i) {
+        var ph = (t * 0.7 + i / 6) % 1;
+        c.setAttribute('cx', (150 + ph * 40 + i * 3).toFixed(1)); c.setAttribute('cy', (176 + ph * ph * 60 - ph * 20).toFixed(1));
+        c.style.opacity = (1 - ph).toFixed(2);
+      });
+      var d = 'M250 ' + (GROUND + 6);
+      for (var x = 250; x <= 392; x += 12) d += ' L' + x + ' ' + (GROUND + 6 + 5 * Math.sin(x / 34 - t * 3)).toFixed(1);
+      d += ' M150 ' + (GROUND + 30);
+      for (x = 150; x <= 360; x += 12) d += ' L' + x + ' ' + (GROUND + 30 + 4 * Math.sin(x / 26 + t * 2.4)).toFixed(1);
+      P.wavePath.setAttribute('d', d);
+    }
+    if (sc.id === 'snow') {
+      var rr = p.r, c = rot(0, 112, rr);
+      P.snowboard.setAttribute('transform', 'translate(' + (p.x + c[0]) + ' ' + (p.y + c[1] + 6) + ') rotate(' + rr + ')');
+      // slope lines rushing past along the board's angle
+      var s = Math.sin(rr / deg), co = Math.cos(rr / deg);
+      P.slopeLines.forEach(function (ln, i) {
+        var off = ((i * 53 + t * 260) % 460) - 230, y0 = GROUND + 24 + (i % 3) * 16;
+        var cx = 200 - off * co, cy = y0 - off * s;
+        ln.setAttribute('d', 'M' + (cx - 26 * co).toFixed(1) + ' ' + (cy - 26 * s).toFixed(1) + ' L' + (cx + 26 * co).toFixed(1) + ' ' + (cy + 26 * s).toFixed(1));
+      });
+      P.flakes.forEach(function (f, i) {
+        var fx = (i * 71 + t * (40 + i * 6)) % 400, fy = (i * 37 + t * (60 + i * 5)) % 340;
+        f.setAttribute('cx', (400 - fx).toFixed(1)); f.setAttribute('cy', (fy + 10).toFixed(1));
+      });
+    }
+    if (sc.id === 'piano') {
+      P.stool.setAttribute('transform', 'translate(' + (sx - 4) + ' ' + (GROUND - 84) + ')');
+      P.piano.setAttribute('transform', 'translate(' + (sx + 66) + ' ' + (GROUND - 96) + ')');
+      P.noteEls.forEach(function (n, i) {
+        var ph = (t * 0.45 + i / 3) % 1;
+        n.setAttribute('transform', 'translate(' + (sx + 110 + i * 22 + 8 * Math.sin(ph * 6)).toFixed(1) + ' ' + (GROUND - 196 - ph * 70).toFixed(1) + ')');
+        n.style.opacity = (ph < 0.15 ? ph / 0.15 : 1 - (ph - 0.15) / 0.85).toFixed(2);
+      });
+    }
+    if (sc.id === 'chess') {
+      P.stool.setAttribute('transform', 'translate(' + (sx - 4) + ' ' + (GROUND - 84) + ')');
+      P.table.setAttribute('transform', 'translate(' + (sx + 50) + ' ' + (GROUND - 92) + ')');
+      // feet sit on the floor in front of the stool; the table top is at GROUND-92
+    }
+    if (sc.id === 'chess') {
+      P.board.setAttribute('transform', 'translate(' + (sx + 50) + ' ' + (GROUND - 92) + ')');
+      // the piece hangs from the fingertips while carried, and stands on the board otherwise
+      if (p.piece === 'hand') P.piece.setAttribute('transform', 'translate(' + wF[0].toFixed(1) + ' ' + (wF[1] + 20).toFixed(1) + ')');
+      else P.piece.setAttribute('transform', 'translate(' + (sx + p.piece[0]) + ' ' + (sy + p.piece[1]) + ')');
+    }
+    if (sc.id === 'cook') {
+      P.stove.setAttribute('transform', 'translate(' + (sx + 44) + ' ' + (GROUND - 92) + ')');
+      P.pan.setAttribute('transform', 'translate(' + wF[0] + ' ' + wF[1] + ') rotate(' + p.pan + ')');
+      // food arcs up out of the pan and lands back in it
+      var f = p.food, panC = rot(58, -8, p.pan);
+      var fx = wF[0] + panC[0], fy = wF[1] + panC[1];
+      var up = Math.sin(Math.min(1, Math.max(0, (f - 0.15) / 0.75)) * Math.PI) * 90;
+      P.food.setAttribute('transform', 'translate(' + fx.toFixed(1) + ' ' + (fy - up).toFixed(1) + ') rotate(' + (f * 360).toFixed(1) + ')');
+      P.flame.style.opacity = 0.6 + 0.4 * Math.sin(t * 9);
+    }
+  }
+
+  // how far the floor line runs for each scene, from the figure's x (furniture included)
+  var SPAN = { rugby: [-44, 46], muay: [-44, 48], chess: [-36, 192], cook: [-40, 198], piano: [-36, 194] };
+  function groundLine(x1, x2) {
+    // tapered at both ends like a brush stroke
+    var m = (x1 + x2) / 2, g = GROUND + 2;
+    P.ground.setAttribute('d', 'M' + x1.toFixed(1) + ' ' + g + ' Q' + m.toFixed(1) + ' ' + (g - 3.4) + ' ' + x2.toFixed(1) + ' ' + g + ' Q' + m.toFixed(1) + ' ' + (g + 3) + ' ' + x1.toFixed(1) + ' ' + g + ' Z');
+  }
+  function span(sc, x) { var s = SPAN[sc.id] || [-44, 46]; return [x + s[0], x + s[1]]; }
+  function render(sc, u, now) {
+    clock = now / 1000;
+    fig.removeAttribute('transform');
+    var p = poseAt(sc, u);
+    show(sc, sc, 1);
+    if (sc.ground) { var gs = span(sc, p.x); groundLine(gs[0], gs[1]); }
+    props(sc, p, body(p), now, p.x, p.y);
+  }
+  // Morph the figure from scene a (at ua) into the start of scene b, fading the props across.
+  var BODY = ['x', 'y', 'r', 'lean', 'head', 'hf', 'hb', 'ff', 'fb', 'kb'];
+  function renderTrans(a, ua, b, k, now) {
+    clock = now / 1000;
+    var pA = poseAt(a, ua), pB = poseAt(b, 0), e = easeIO(k), pm = {};
+    pA.kb = pA.kb || 1; pB.kb = pB.kb || 1;
+    BODY.forEach(function (n) { pm[n] = mix(pA[n], pB[n], e); });
+    // anticipation squash, stretch through a hop, then a little squash on landing
+    var sy = 1;
+    if (k < 0.25) sy = 1 - 0.14 * Math.sin(k / 0.25 * Math.PI);
+    else if (k < 0.75) { sy = 1 + 0.12 * Math.sin((k - 0.25) / 0.5 * Math.PI); pm.y -= Math.sin((k - 0.25) / 0.5 * Math.PI) * 26; }
+    else sy = 1 - 0.07 * Math.sin((k - 0.75) / 0.25 * Math.PI);
+    var sx = 1 / Math.sqrt(sy), fy = pm.y + 118;
+    fig.setAttribute('transform', 'translate(' + pm.x.toFixed(1) + ' ' + fy.toFixed(1) + ') scale(' + sx.toFixed(3) + ' ' + sy.toFixed(3) + ') translate(' + (-pm.x).toFixed(1) + ' ' + (-fy).toFixed(1) + ')');
+    var wF = body(pm);
+    function on(src) { var o = {}; for (var n in src) o[n] = src[n]; BODY.forEach(function (n) { o[n] = pm[n]; }); return o; }
+    show(a, b, e);
+    var ga = span(a, pA.x), gb = span(b, pB.x), gw = a.ground && b.ground ? e : a.ground ? 0 : 1;
+    groundLine(ga[0] + (gb[0] - ga[0]) * gw, ga[1] + (gb[1] - ga[1]) * gw);
+    props(a, on(pA), wF, now, pA.x, pA.y);
+    props(b, on(pB), wF, now, pB.x, pB.y);
+  }
+
+  // ---- playback ----
+  var TRANS = 700; // ms to morph from one activity into the next
+  var idx = 0, sceneStart = performance.now(), loops = 1, offscreen = false, pauseAt = 0, trans = null;
+  function shift(dt) { sceneStart += dt; if (trans) trans.start += dt; }
+  var turb = svg.querySelector('#boil feTurbulence'), seed = 1, lastBoil = 0;
+  function frame(now) {
+    if (!offscreen && !window.__stop) {
+      // step at 12 drawings a second, like frame-by-frame hand animation
+      now = Math.floor(now / 83) * 83;
+      if (trans) {
+        var k = (now - trans.start) / TRANS;
+        if (k < 1) renderTrans(trans.from, trans.u, trans.to, Math.max(0, k), now);
+        else { trans = null; }
+      }
+      if (!trans) {
+        var sc = scenes[idx], e = now - sceneStart;
+        if (e >= sc.dur * loops) {
+          // finish the last cycle exactly, then morph into the next activity
+          var from = sc;
+          idx = (idx + 1) % scenes.length;
+          trans = reduce ? null : { from: from, u: 1, to: scenes[idx], start: now };
+          sceneStart = now + (trans ? TRANS : 0);
+          if (trans) renderTrans(from, 1, scenes[idx], 0, now);
+          else render(scenes[idx], 0.02, now);
+        } else render(sc, reduce ? 0.02 : (Math.max(0, e) % sc.dur) / sc.dur, now);
+      }
+      if (turb && now - lastBoil > 200) { seed = seed % 6 + 1; turb.setAttribute('seed', seed); lastBoil = now; }
+    }
+    requestAnimationFrame(frame);
+  }
+  // reduced motion: hold a pose per activity and change every few seconds
+  if (reduce) loops = 1;
+  if (window.__inkTest) window.inkHero = { scenes: scenes, render: render, renderTrans: renderTrans };
+  requestAnimationFrame(frame);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      var was = offscreen; offscreen = !en.isIntersecting;
+      if (was && !offscreen) shift(performance.now() - pauseAt);
+      if (!was && offscreen) pauseAt = performance.now();
+    });
+  }).observe(svg);
+})();
+
+</script>
+</body>
+</html>
