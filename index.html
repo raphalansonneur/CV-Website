@@ -206,8 +206,8 @@ li.open .row-body { grid-template-rows: 1fr; }
   justify-self: center; align-self: center;
   display: grid; place-items: center; color: var(--muted); font-size: 15px; position: relative; overflow: hidden;
 }
-/* Crop: hairline to shirt collar, face centred */
-.photo img { position: absolute; left: -5.8%; top: -16.9%; width: 114.3%; height: auto; max-width: none; }
+/* Photo is pre-cropped square: hair to lower shirt collar */
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .about-text > p { font-size: clamp(20px, 2.1vw, 26px); line-height: 1.35; letter-spacing: -0.02em; max-width: 34ch; }
 .about-text > p + p { margin-top: 20px; }
 .about-text > p .m { color: var(--muted); }
@@ -452,7 +452,7 @@ footer .cn { letter-spacing: 0.08em; }
     <div class="wrap">
       <div class="block-head reveal"><h2 id="about-h">About</h2></div>
       <div class="grid">
-        <div class="photo reveal"><img src="photo.jpg" alt="Raphaël Lansonneur" width="880" height="1100" loading="lazy" decoding="async"></div>
+        <div class="photo reveal"><img src="photo.jpg" alt="Raphaël Lansonneur" width="720" height="720" loading="lazy" decoding="async"></div>
         <div class="about-text">
           <p class="reveal">I’m interested in innovation and entrepreneurship, and in the start-up ecosystem that turns new ideas into companies.</p>
           <p class="reveal"><span class="m">I co-founded my first company in my final semester at Brown, co-captained a D1 national championship rugby team, and learned to sell at Gartner. Away from work I love films and the culinary arts, and I train Muay Thai, snowboard, surf, and play the piano and chess.</span></p>
