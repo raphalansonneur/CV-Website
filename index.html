@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Raphaël Lansonneur · Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Raphaël Lansonneur: MSc Global Health Management student at Imperial Business School and co-founder of Ink Studio, a videography and digital marketing agency in Geneva.">
+<meta name="description" content="Raphaël Lansonneur: MSc Global Health Management student at Imperial College London and co-founder of Ink Studio, a videography and digital marketing agency in Geneva.">
 <meta property="og:title" content="Raphaël Lansonneur · Portfolio">
-<meta property="og:description" content="MSc Global Health Management at Imperial Business School. Co-founder of Ink Studio. Previously Gartner and Brown University.">
+<meta property="og:description" content="MSc Global Health Management at Imperial College London. BA Biology and Economics at Brown University. Co-founder of Ink Studio. Previously Gartner.">
 <meta property="og:type" content="profile">
 <meta name="theme-color" content="#030303">
 <link rel="canonical" href="https://raphaellansonneur.com/">
@@ -124,6 +124,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero h1 .ch { display: inline-block; }
 .hero h1 .cn { display: inline-block; margin-left: 0.3em; font-size: 0.24em; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); vertical-align: 0.88em; }
 .js .hero h1 .cn { animation: fade 900ms var(--ease) 700ms both; }
+.hero-sub { display: grid; gap: 4px; justify-items: end; text-align: right; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.35; color: var(--muted); padding-bottom: 0.35em; }
+.hero-sub span:first-child { color: var(--fg); }
+.js .hero-sub { animation: fade 900ms var(--ease) 900ms both; }
 .brand .cn { font-weight: 400; color: var(--muted); margin-left: 4px; letter-spacing: 0.04em; }
 .js .hero h1 .ch { animation: rise 900ms var(--ease) both; animation-delay: calc(var(--i) * 26ms + 120ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
@@ -251,7 +254,7 @@ footer .cn { letter-spacing: 0.08em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .hero h1 .ch, .js .hero h1 .cn, .js #ink, .cue i::after { animation: none; }
+  .js .hero h1 .ch, .js .hero h1 .cn, .js .hero-sub, .js #ink, .cue i::after { animation: none; }
   .row-name, .row-body, .plus::before, .plus::after, .js .stop { transition: none; }
 }
 
@@ -273,6 +276,7 @@ footer .cn { letter-spacing: 0.08em; }
 }
 @media (max-width: 640px) {
   .hero-cap { grid-template-columns: minmax(0, 1fr); }
+  .hero-sub { justify-items: start; text-align: left; padding-bottom: 0; }
   .nav { gap: 16px; }
   .nav .opt { display: none; }
   .brand .full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -309,13 +313,14 @@ footer .cn { letter-spacing: 0.08em; }
     <div class="wrap">
       <div class="hero-cap">
         <h1><span class="sr-only">Raphaël Lansonneur, 雷赫非</span><span class="w" aria-hidden="true"><span class="ch" style="--i:1">R</span><span class="ch" style="--i:2">a</span><span class="ch" style="--i:3">p</span><span class="ch" style="--i:4">h</span><span class="ch" style="--i:5">a</span><span class="ch" style="--i:6">ë</span><span class="ch" style="--i:7">l</span></span> <span class="w" aria-hidden="true"><span class="ch" style="--i:8">L</span><span class="ch" style="--i:9">a</span><span class="ch" style="--i:10">n</span><span class="ch" style="--i:11">s</span><span class="ch" style="--i:12">o</span><span class="ch" style="--i:13">n</span><span class="ch" style="--i:14">n</span><span class="ch" style="--i:15">e</span><span class="ch" style="--i:16">u</span><span class="ch" style="--i:17">r</span><span class="ch" style="--i:18">.</span></span><span class="cn" lang="zh-Hans" aria-hidden="true">雷赫非</span></h1>
+        <p class="hero-sub"><span>MSc Global Health Management, Imperial College London</span><span>BA Biology and Economics, Brown University</span></p>
       </div>
     </div>
   </section>
 
   <section class="intro" aria-label="Introduction">
     <div class="wrap grid">
-      <p class="intro-text">I’m completing an MSc in Global Health Management at Imperial and run a videography and digital marketing agency based in Geneva. Before that, I sold to CFOs at Gartner and studied Biology and Economics at Brown University.</p>
+      <p class="intro-text">I’m completing an MSc in Global Health Management at Imperial College London, after a BA in Biology and Economics at Brown University. I also run a videography and digital marketing agency based in Geneva, and previously sold to CFOs at Gartner.</p>
       <div class="journey reveal" id="journey" role="region" aria-labelledby="journey-h">
         <div class="map-view" aria-hidden="true"><canvas id="map"></canvas></div>
         <div class="panel">
